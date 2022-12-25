@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import sania.rasheed.Adapters.MeaningsAdapter;
 import sania.rasheed.Adapters.PhoneticsAdapter;
+import sania.rasheed.Database.Word;
+import sania.rasheed.Database.WordRepository;
 import sania.rasheed.Models.APIResponse;
 
 public class MainActivity extends AppCompatActivity {
@@ -54,6 +56,9 @@ public class MainActivity extends AppCompatActivity {
                 //API call
                 RequestManager manager = new RequestManager(MainActivity.this);
                 manager.getWordMeaning(listener, query);
+
+                //saving history
+                saveHistory(query);
 
                 return true;
             }
@@ -128,5 +133,18 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         return true;
+    }
+
+    //Database
+    private void saveHistory(String word) {
+        // inside this method we are passing
+        // all the data via an intent.
+        Word userWord = new Word(word);
+
+        WordRepository w=new WordRepository(getApplication());
+        w.insert(userWord);
+
+        // displaying a toast message after adding the data
+        Toast.makeText(this, "saved", Toast.LENGTH_SHORT).show();
     }
 }

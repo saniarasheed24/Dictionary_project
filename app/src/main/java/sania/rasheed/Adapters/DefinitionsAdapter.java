@@ -38,17 +38,17 @@ public class DefinitionsAdapter extends RecyclerView.Adapter<DefinitionsViewHold
         else {
             holder.textView_example.setText("");
         }
-        StringBuilder synonyms = new StringBuilder();
-        StringBuilder antonyms = new StringBuilder();
-
-        synonyms.append(definitionsList.get(position).getSynonyms());
-        synonyms.append(definitionsList.get(position).getAntonyms());
-
-        holder.textView_synonym.setText(synonyms);
-        holder.textView_antonyms.setText(antonyms);
-
-        holder.textView_synonym.setSelected(true);
-        holder.textView_antonyms.setSelected(true);
+//        StringBuilder synonyms = new StringBuilder();
+//        StringBuilder antonyms = new StringBuilder();
+//
+//        synonyms.append(definitionsList.get(position).getSynonyms());
+//        synonyms.append(definitionsList.get(position).getAntonyms());
+//
+//        holder.textView_synonym.setText(synonyms);
+//        holder.textView_antonyms.setText(antonyms);
+//
+//        holder.textView_synonym.setSelected(true);
+//        holder.textView_antonyms.setSelected(true);
 
     }
 

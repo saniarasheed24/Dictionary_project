@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Dictionary</string>
+    <string name="no_word">Nothing Found</string>
 </resources>

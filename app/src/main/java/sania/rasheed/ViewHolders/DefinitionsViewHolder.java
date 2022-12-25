@@ -17,8 +17,8 @@ public class DefinitionsViewHolder extends RecyclerView.ViewHolder {
 
         textView_definitions = itemView.findViewById(R.id.textView_definition);
         textView_example = itemView.findViewById(R.id.textView_example);
-        textView_synonym = itemView.findViewById(R.id.textView_synonyms);
-        textView_antonyms = itemView.findViewById(R.id.textView_antonyms);
+//        textView_synonym = itemView.findViewById(R.id.textView_synonyms);
+//        textView_antonyms = itemView.findViewById(R.id.textView_antonyms);
 
     }
 }
