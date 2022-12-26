@@ -10,7 +10,7 @@ import java.util.List;
 public class WordRepository {
 
     // below line is the create a variable
-    // for dao and list for all courses.
+    // for dao and list for all words.
     private Dao dao;
     private LiveData<List<Word>> allWords;
 
@@ -32,17 +32,18 @@ public class WordRepository {
         new DeleteCourseAsyncTask(dao).execute(model);
     }
 
-    // below is the method to delete all the courses.
+    // below is the method to delete all the history items.
     public void deleteAllWords() {
         new DeleteAllWordsAsyncTask(dao).execute();
     }
 
-    // below method is to read all the courses.
-    public LiveData<List<Word>> getAllCourses() {
+    // below method is to read all the history items.
+    public LiveData<List<Word>> getAllWords() {
         return allWords;
     }
 
-    // we are creating a async task method to insert new course.
+
+    //creating a async task method to insert new word.
     private static class InsertCourseAsyncTask extends AsyncTask<Word, Void, Void> {
         private Dao dao;
 
@@ -60,7 +61,7 @@ public class WordRepository {
     }
 
 
-    // we are creating a async task method to delete course.
+    // creating a async task method to delete course.
     private static class DeleteCourseAsyncTask extends AsyncTask<Word, Void, Void> {
         private Dao dao;
 
@@ -70,14 +71,12 @@ public class WordRepository {
 
         @Override
         protected Void doInBackground(Word... models) {
-            // below line is use to delete
-            // our course modal in dao.
             dao.delete(models[0]);
             return null;
         }
     }
 
-    // we are creating a async task method to delete all courses.
+    // creating a async task method to delete all words.
     private static class DeleteAllWordsAsyncTask extends AsyncTask<Void, Void, Void> {
         private Dao dao;
         private DeleteAllWordsAsyncTask(Dao dao) {
@@ -85,9 +84,7 @@ public class WordRepository {
         }
         @Override
         protected Void doInBackground(Void... voids) {
-            // on below line calling method
-            // to delete all courses.
-            dao.getAllWords();
+            dao.deleteAllWords();
             return null;
         }
     }

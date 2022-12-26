@@ -11,17 +11,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import sania.rasheed.Database.Word;
+import sania.rasheed.Database.WordRepository;
 import sania.rasheed.R;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder> {
 
     private final LayoutInflater layoutInflater;
-    private Context mcontext;
     private List<Word> mWords;
 
     public HistoryAdapter(Context context) {
         layoutInflater = LayoutInflater.from(context);
-        mcontext = context;
     }
 
     @NonNull
@@ -66,8 +65,8 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
     }
 
 
-    public class HistoryViewHolder extends RecyclerView.ViewHolder {
-        private TextView historyItemView;
+    public static class HistoryViewHolder extends RecyclerView.ViewHolder {
+        private final TextView historyItemView;
         int mPosition;
 
         public HistoryViewHolder(View itemView){

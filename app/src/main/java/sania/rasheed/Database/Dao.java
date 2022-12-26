@@ -18,4 +18,8 @@ public interface Dao {
     @Query("SELECT * FROM saved")
     LiveData<List<Word>> getAllWords();
 
+    @Query("DELETE FROM saved")
+    void deleteAllWords();
+
+
 }

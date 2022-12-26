@@ -1,5 +1,6 @@
 package sania.rasheed;
 
+import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -27,15 +28,18 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.List;
 
 import sania.rasheed.Adapters.HistoryAdapter;
 import sania.rasheed.Database.ViewModel;
 import sania.rasheed.Database.Word;
+import sania.rasheed.Database.WordRepository;
 
 public class HistoryActivity extends AppCompatActivity {
 
-
+    FloatingActionButton btnDeleteAll;
     RecyclerView historyRecyclerView;
     ViewModel viewModel;
     HistoryAdapter historyAdapter;
@@ -43,6 +47,9 @@ public class HistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
         setTitle("History");
+
+        btnDeleteAll = findViewById(R.id.btn_delete);
+
         //menu
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -55,7 +62,6 @@ public class HistoryActivity extends AppCompatActivity {
         historyRecyclerView.setAdapter(historyAdapter);
         historyRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        //viewModel = ViewModelProviders.of(this).ge
         viewModel = new ViewModelProvider(this).get(ViewModel.class);
         viewModel.getAllWords().observe(this, new Observer<List<Word>>() {
             @Override
@@ -63,23 +69,13 @@ public class HistoryActivity extends AppCompatActivity {
                 historyAdapter.setWords(words);
             }
         });
+        btnDeleteAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewModel.deleteAllWords();
 
-        //delete
-//        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
-//            @Override
-//            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-//                return false;
-//            }
-//
-//            @Override
-//            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-//                // on recycler view item swiped then we are deleting the item of our recycler view.
-//                viewModel.delete(historyAdapter.getWordAt(viewHolder.getBindingAdapterPosition()-1));
-//                Toast.makeText(HistoryActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
-//            }
-//        }).
-//                // below line is use to attach this to recycler view.
-//                        attachToRecyclerView(historyRecyclerView);
+            }
+        });
 
     }
 

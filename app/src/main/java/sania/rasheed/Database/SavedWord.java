@@ -6,17 +6,19 @@ import androidx.room.PrimaryKey;
 
 import sania.rasheed.Models.Meanings;
 
+
+//this class is incomplete
+//this is for saved words
+
+
 @Entity(tableName = "myWords")
 public class SavedWord {
     @PrimaryKey(autoGenerate = true)
-    // variable for our id.
+
     private int id;
     String word;
     @Embedded Meanings meanings;
 
-//    public Word(String word) {
-//        this.word = word;
-//    }
 
     public int getId() {
         return id;

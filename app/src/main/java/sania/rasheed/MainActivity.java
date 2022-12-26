@@ -40,12 +40,11 @@ public class MainActivity extends AppCompatActivity {
         recyclerView_meanings = findViewById(R.id.recycler_meanings);
         progressDialog = new ProgressDialog(this);
 
-        progressDialog.setTitle("Loading...");
-        progressDialog.show();
+//        progressDialog.setTitle("Loading...");
+//        progressDialog.show();
 
         //API call
         RequestManager manager = new RequestManager(MainActivity.this);
-        manager.getWordMeaning(listener, "hello");
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -59,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
                 //saving history
                 saveHistory(query);
-
+                progressDialog.dismiss();
                 return true;
             }
 
@@ -71,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //listener
-
     private final OnFetchDataListener listener = new OnFetchDataListener() {
         @Override
         public void onFetchData(APIResponse apiResponse, String message) {
@@ -93,8 +91,6 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private void showData(APIResponse apiResponse){
-
-        //textView_word.setText("Word: "+ apiResponse.getWord());
         textView_word.setText(apiResponse.getWord());
         recyclerView_phonetics.setHasFixedSize(true);
         recyclerView_phonetics.setLayoutManager(new GridLayoutManager(this,1));
@@ -137,14 +133,8 @@ public class MainActivity extends AppCompatActivity {
 
     //Database
     private void saveHistory(String word) {
-        // inside this method we are passing
-        // all the data via an intent.
         Word userWord = new Word(word);
-
         WordRepository w=new WordRepository(getApplication());
         w.insert(userWord);
-
-        // displaying a toast message after adding the data
-        Toast.makeText(this, "saved", Toast.LENGTH_SHORT).show();
     }
 }
